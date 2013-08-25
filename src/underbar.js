@@ -38,6 +38,19 @@ var _ = { };
   // Call iterator(value, key, collection) for each element of collection.
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
+    if (Array.isArray(collection) === true){
+      var result = [];
+      for (var key = 0; key < collection.length; key++) {
+        result.push(iterator(collection[key], key, collection));
+      }
+      return result
+    }else {
+      var result = [];
+      for (var key in collection){
+        result.push(iterator(collection[key], key, collection));
+      }
+      return result
+    }
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
