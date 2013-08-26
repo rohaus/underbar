@@ -39,17 +39,13 @@ var _ = { };
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
     if (Array.isArray(collection) === true){
-      var result = [];
       for (var key = 0; key < collection.length; key++) {
-        result.push(iterator(collection[key], key, collection));
+        iterator(collection[key], key, collection);
       }
-      return result
     }else {
-      var result = [];
       for (var key in collection){
-        result.push(iterator(collection[key], key, collection));
+        iterator(collection[key], key, collection);
       }
-      return result
     }
   };
 
@@ -59,6 +55,19 @@ var _ = { };
     // TIP: Here's an example of a function that needs to iterate, which we've
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
+    var result = [];
+    _.each(array, function(value, key, array){
+      if (value === target){
+        result.push(key);
+      }
+    })
+    if (target === null){
+      return 1
+    } else if(result.length === 0){
+      return -1
+    } else {
+      return result[0]
+    }
   };
 
   // Return all elements of an array that pass a truth test.
