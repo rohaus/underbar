@@ -248,6 +248,15 @@ var _ = { };
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for (var i = 0; i < arguments.length; i++){
+    _.each(arguments[i],function(value,key,collection){
+      if (obj[key] === undefined){
+        var dum = {a:1, b:2};
+        obj[key] = value;
+      }
+    });
+  };
+  return obj;
   };
 
 
