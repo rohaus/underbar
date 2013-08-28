@@ -203,6 +203,17 @@ var _ = { };
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    if (iterator === undefined){
+      iterator = function(item){
+        return item;
+      };
+    } 
+    return _.reduce(collection, function(truthTest, item) {
+      if (iterator(item) || truthTest) {
+        return true;
+      } 
+      return false;
+    }, false);
   };
 
 
