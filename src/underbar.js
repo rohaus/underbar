@@ -160,7 +160,10 @@ var _ = { };
   //   }, 0); // should be 6
   //
   _.reduce = function(collection, iterator, initialValue) {
-    var result = 0;
+    if (initialValue === undefined) {
+      var initialValue = 0;
+    }
+    var result = initialValue;
     _.each(collection,function(value, key, collection) {
       result = iterator(result, value);
     })
