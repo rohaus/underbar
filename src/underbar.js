@@ -333,8 +333,18 @@ var _ = { };
 
   // Shuffle an array.
   _.shuffle = function(array) {
+    var result = new Array(array.length),
+    value,
+    i = 0;
+    while(_.contains(result,undefined)) {
+      value = Math.floor(Math.random()*array.length);
+      if (result[value] === undefined) {
+        result[value] = array[i];
+        i++;
+      }
+    };
+    return result;
   };
-
 
   /**
    * Note: This is the end of the pre-course curriculum. Feel free to continue,
